@@ -1,9 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:food_ui/food_tabs.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({ Key? key }) : super(key: key);
+class HomeScreen extends StatefulWidget{  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen>
+ with SingleTickerProviderStateMixin {
+  TabController? tabController;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    tabController = TabController(length:4, vsync: this);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -123,6 +136,50 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
 
+          SizedBox(height: 10,),
+          Padding(
+            padding: EdgeInsets.only(left: 15),
+            child: TabBar(
+              controller: tabController,
+              isScrollable: true,
+              labelColor: Colors.black,
+              unselectedLabelColor: Colors.grey.withOpacity(0.9),
+              indicatorSize: TabBarIndicatorSize.label,
+
+              labelStyle: TextStyle(
+              fontSize: 17,
+              fontWeight: FontWeight.bold,
+               ), 
+
+               unselectedLabelStyle: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+               ), 
+
+              tabs: [
+                  Tab(child: Text('FEATURED'),),
+                  Tab(child: Text('COMBO'),),
+                  Tab(child: Text('FAVORITES'),),
+                  Tab(child: Text('RECOMMENED'),),
+
+              ]),
+            ),
+            
+           Container(
+             //padding: EdgeInsets.all(15),
+             //color: Colors.amber,
+            width: 400,
+             height: 400,
+             child: TabBarView(
+               controller: tabController,
+               children:[
+                 FoodTabs(),
+                 FoodTabs(),
+                 FoodTabs(),
+                 FoodTabs(),
+             ]),
+           ),
+
         ],
       ),
     );
@@ -187,5 +244,4 @@ class HomeScreen extends StatelessWidget {
         ),
         );
    }
-
 }
