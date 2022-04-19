@@ -55,7 +55,8 @@ class HomeScreen extends StatelessWidget {
             child: Text('RECIPES',style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,
-               ),),
+               ),
+            ),
           ),
           SizedBox(height: 25,),
 
@@ -78,10 +79,113 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
+
+             Padding(
+            padding: const EdgeInsets.only(left:15.0,top: 15),
+            child: Text('Recommended',style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+               ),
+            ),
+          ),
           
+          SizedBox(height: 15,),
+
+          Container(
+            height: 200,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                _buildList(
+                  foodName: 'Humburger', 
+                  imgPath: 'assets/images/burger.png',
+                  price: '21', 
+                  bgColor: Colors.orange.withOpacity(0.4),
+                  textColor: Colors.brown,
+                  ),
+
+                  _buildList(
+                  foodName: 'Fries', 
+                  imgPath: 'assets/images/fries.png',
+                  price: '15', 
+                  bgColor: Colors.blue.withOpacity(0.4),
+                  textColor: Colors.deepPurple,
+                  ),
+
+                  _buildList(
+                  foodName: 'Donuts', 
+                  imgPath: 'assets/images/doughnut.png',
+                  price: '15', 
+                  bgColor: Colors.green.withOpacity(0.4),
+                  textColor: Colors.green,
+                  ),
+              ],
+            ),
+          ),
 
         ],
       ),
     );
   }
+
+   _buildList({
+     required String foodName, 
+     required String imgPath, 
+     required String price, 
+     required Color bgColor, 
+     required Color textColor,
+     }){
+      return Padding(
+        padding:EdgeInsets.only(left: 15),
+        child: InkWell(
+          onTap: (){},
+          child: Container(
+            height: 175,
+            width: 150,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: bgColor,
+            ),
+            child: Column(
+              children: [
+                SizedBox(height: 25,),
+                Hero(
+                  tag: foodName, 
+                  child: Container(
+                     height: 75,
+                     width: 75,
+                     decoration: BoxDecoration(
+                       color: Colors.white,
+                       shape: BoxShape.circle,
+                     ),
+                     child: Center(
+                       child: Image.asset(imgPath,height: 50,width: 50,),
+                     ),
+                  ),
+                ),
+                SizedBox(height: 25,),
+                Text(
+                  foodName,
+                  style: TextStyle(
+                    fontSize: 17,
+                    color: textColor,
+                    fontWeight: FontWeight.bold
+                  ),
+                  ),
+
+                   Text(
+                  '\$ ' +price,
+                  style: TextStyle(
+                    fontSize: 17,
+                    color: textColor,
+                   // fontWeight: FontWeight.bold
+                  ),
+                  ),
+              ],
+            ),
+          ),
+        ),
+        );
+   }
+
 }
