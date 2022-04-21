@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_ui/details_screen.dart';
 import 'package:food_ui/food_tabs.dart';
 
 import 'package:google_fonts/google_fonts.dart';
@@ -195,7 +196,12 @@ class _HomeScreenState extends State<HomeScreen>
       return Padding(
         padding:EdgeInsets.only(left: 15),
         child: InkWell(
-          onTap: (){},
+          onTap: (){
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (ctx) => DetailsScreen(imgPath: imgPath, foodName: foodName, pricePerItem: price, heroTag: foodName,),
+              ),
+            );
+          },
           child: Container(
             height: 175,
             width: 150,

@@ -20,13 +20,15 @@ class _FoodTabsState extends State<FoodTabs> {
       ),
     );
   }
-
+    
+    // ListItem method
    _buildListItem({
      required String foodName,
      //required double? rating, rating:4.0,
      required String price,
      required String imgPath,
-   }){
+   })
+   {
      return Padding(
        padding: EdgeInsets.all(15),
        child: Row(
